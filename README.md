@@ -32,42 +32,29 @@ It helps developers:
 
 It is designed to be:
 
-- Free
-- Simple
-- Easy to integrate into apps or tools
+- Free  
+- Simple  
+- Easy to integrate into apps or tools  
 
 ---
 
 # 🧠 How It Works
 
-### 1️⃣ Client Sends Request
+### 1️⃣ Client Sends Request  
 A user sends a POST request to the API.
 
+### 2️⃣ FastAPI Receives Request  
+FastAPI:
+- Parses JSON body  
+- Validates input  
+- Routes to correct endpoint  
 
----
+### 3️⃣ GPT4Free Processes Prompt  
+The backend sends the prompt to a GPT4Free provider which:
+- Generates AI response  
+- Returns text output  
 
-### 2️⃣ FastAPI Receives Request
-
-FastAPI parses:
-- Query parameters
-- JSON body
-- Validates input
-
----
-
-### 3️⃣ GPT4Free Processes Prompt
-
-The backend sends the prompt to a GPT4Free provider.
-
-The provider:
-- Generates AI response
-- Returns text output
-
----
-
-### 4️⃣ API Returns JSON
-
-The API sends structured JSON back:
+### 4️⃣ API Returns JSON  
 
 ```json
 {
@@ -75,52 +62,139 @@ The API sends structured JSON back:
   "prompt": "Explain async in Python",
   "response": "Async allows non-blocking execution..."
 }
-## 🌍 Live API
+```
+
+---
+
+# 🌍 Live API
+
 https://dev-ai-api.onrender.com
 
-## 📘 Interactive Documentation
-/docs
-- **https://dev-ai-api.onrender.com/docs**
+---
 
-## 📡 API Endpoints
+# 📘 Interactive Documentation
+
+https://dev-ai-api.onrender.com/docs
+
+---
+
+# 📡 API Endpoints
+
 ## 1️⃣ Ask AI
 
-- **POST**
-POST /ask
+**POST** `/ask`
+
+```json
 {
   "prompt": "Explain REST API"
 }
+```
+
+---
+
 ## 2️⃣ Explain Error
-- **POST** /explain-error
+
+**POST** `/explain-error`
+
+```json
 {
   "error": "TypeError: list indices must be integers"
 }
-3️⃣ Explain Code
-POST /explain-code
+```
+
+---
+
+## 3️⃣ Explain Code
+
+**POST** `/explain-code`
+
+```json
 {
   "code": "def add(a,b): return a+b"
 }
-4️⃣ Generate Unit Tests
-POST /generate-tests
+```
+
+---
+
+## 4️⃣ Generate Unit Tests
+
+**POST** `/generate-tests`
+
+```json
 {
   "code": "def multiply(a,b): return a*b"
 }
-## 🐍 Python Usage Example
+```
+
+---
+
+# 🐍 Python Usage Example
+
 ```python
 import requests
 
-url = "https://your-app-name.onrender.com/ask"
+url = "https://dev-ai-api.onrender.com/ask"
 data = {"prompt": "Explain decorators in Python"}
 
 response = requests.post(url, json=data)
 print(response.json())
+```
 
-## 🌐 JavaScript Usage Example
-fetch("https://your-app-name.onrender.com/ask?prompt=Explain closures")
-  .then(res => res.json())
-  .then(data => console.log(data));
+---
 
-## 📦 Requirements
+# 🌐 JavaScript Usage Example
+
+```javascript
+fetch("https://dev-ai-api.onrender.com/ask", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    prompt: "Explain closures"
+  })
+})
+.then(res => res.json())
+.then(data => console.log(data));
+```
+
+---
+
+# 📦 Requirements
+
+```
 fastapi
 uvicorn
 g4f
+```
+
+---
+
+# 🚀 Deploy on Render
+
+### Build Command
+```
+pip install -r requirements.txt
+```
+
+### Start Command
+```
+uvicorn app:app --host 0.0.0.0 --port $PORT
+```
+
+---
+
+# ⚠ Disclaimer
+
+GPT4Free providers may change, rate-limit, or become unavailable.
+
+This project is for educational and experimental purposes.
+
+---
+
+<div align="center">
+
+⭐ Star this repo if you like it  
+🚀 Built for developers  
+
+</div>
